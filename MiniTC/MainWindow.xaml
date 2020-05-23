@@ -1,0 +1,48 @@
+﻿<Window x:Class="MiniTC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:MiniTC.ViewModel"
+        xmlns:local="clr-namespace:MiniTC.Controls"
+        xmlns:resx="clr-namespace:MiniTC.Properties"
+        xmlns:control="clr-namespace:MiniTC.Controls"
+        mc:Ignorable="d"
+        Title="TC" Height="500" Width="500" Background="LightGray">
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <control:PanelTC Grid.Row="1" Grid.Column="0" x:Name="Panel1"  
+                      Dyski="{Binding Od.Dyski}"
+                      WybranyDysk="{Binding Od.WybranyDysk, Mode=TwoWay}" 
+                      Sciezka="{Binding Od.Sciezka, Mode=TwoWay}"
+                      ZawartoscFolderu="{Binding Od.ZawartoscFolderu}" 
+                      WybranyDir="{Binding Od.WybranyDir, Mode=TwoWay}"
+                      OpenFolder="{Binding Od.ZmienDir}"/>
+
+        <control:PanelTC Grid.Row="1" Grid.Column="1" x:Name="Panel2" 
+                      Dyski="{Binding Do.Dyski}"
+                      WybranyDysk="{Binding Do.WybranyDysk, Mode=TwoWay}" 
+                      Sciezka="{Binding Do.Sciezka, Mode=TwoWay}"
+                      ZawartoscFolderu="{Binding Do.ZawartoscFolderu}"  
+                      WybranyDir="{Binding Do.WybranyDir, Mode=TwoWay}"
+                      OpenFolder="{Binding Do.ZmienDir}"/>
+
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Height="25" Width="70"
+                Command="{Binding Kopiowanie}" Content="{Binding Source={x:Static resx:Resources.PrzyciskKopiuj}}"/>
+    </Grid>
+</Window>
+
